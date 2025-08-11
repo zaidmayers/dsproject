@@ -5,7 +5,7 @@ HED = '-e .'
 def get_requirements(file_path: str)->List[str]:
     
     ''' This function is designed to return the list of requirements '''
-    
+    reqs = []
     with open('requirements.txt') as file_obj:
         reqs = file_obj.readlines()
         reqs = [r.replace("\n", "") for r in reqs]
