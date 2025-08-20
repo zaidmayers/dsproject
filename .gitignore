@@ -6,6 +6,18 @@ __pycache__/
 # C extensions
 *.so
 
+# CatBoost training logs
+notebook/catboost_info/
+*.json
+*.tsv
+*.out.tfevents
+
+# Artifacts (models, checkpoints, outputs)
+artifacts/
+
+# Python cache
+__pycache__/
+
 # Distribution / packaging
 .Python
 build/
@@ -135,6 +147,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments
+.artifacts
 .env
 .envrc
 .venv
