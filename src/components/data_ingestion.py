@@ -4,9 +4,10 @@ from src.logger import logging
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
+from src.components.data_transformation import DataTrans
 
 @dataclass
-class DataIngestionConfig: 
+class DataIngestionConfig:  
     train_data = os.path.join('artifacts', 'train.csv')
     test_data = os.path.join('artifacts', 'test.csv')
     raw_data = os.path.join('artifacts','data.csv')
@@ -32,10 +33,14 @@ class DataIngestion:
             
             logging.info(f'Train Data stored in {self.ingestion.train_data} as {os.path.basename(self.ingestion.train_data)}')
             train.to_csv(self.ingestion.train_data, index = False, header=True)
+            
             logging.info(f'Test Data stored in {self.ingestion.test_data} as {os.path.basename(self.ingestion.test_data)}')
             test.to_csv(self.ingestion.test_data, index = False, header=True)
             
             logging.info("Data ingestion completed")
+            
+            return (self.ingestion.train_data, self.ingestion.test_data)
+            
             
         except Exception as e: 
             logging.exception('Data ingestion failed!')
@@ -43,4 +48,7 @@ class DataIngestion:
     
 if __name__ == "__main__":
     x = DataIngestion()
-    x.start()
+    train, test = x.start()
+    
+    y = DataTrans()
+    y.start(train, test)
