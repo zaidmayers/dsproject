@@ -1,5 +1,4 @@
 import os
-import sys
 from dataclasses import dataclass
 os.environ["LOKY_MAX_CPU_COUNT"] = "8"
 from sklearn.linear_model import LogisticRegression
@@ -12,9 +11,7 @@ import warnings
 warnings.filterwarnings('ignore')
 from src.exception import CustomException
 from src.logger import logging
-from src.components.data_transformation import DataTrans
-from src.components.data_ingestion import DataIngestion
-from src.utils import save_object, evaluate
+from src.utils import save_object, evaluate 
 
 @dataclass
 class ModelTrainConfig:
@@ -89,27 +86,18 @@ class ModelTrainer:
                 "learning_rate": [0.01, 0.1, 1]
             }}
             
-            scores = evaluate(X_train,y_train,X_test,y_test,models,params)
+            scores, fitted_models = evaluate(X_train,y_train,X_test,y_test,models,params)
             best_model_name = max(scores, key=scores.get)
             best_model_score = scores[best_model_name]
+            best_model = fitted_models[best_model_name]
                 
             if best_model_score <0.6:
                 raise CustomException("A good enough model doesn't exist.")
             
-            save_object(models[best_model_name], self.config.trainer) 
+            save_object(best_model, self.config.trainer) 
             logging.info(f"Model with maximum f1 score saved.")
             return best_model_score
         
         except Exception as e: 
             raise CustomException(e)
         
-        
-if __name__ == "__main__":
-    x = DataIngestion()
-    train, test = x.start()
-    
-    y = DataTrans()
-    train_arr, test_arr, _ = y.start(train, test)
-    
-    trainer = ModelTrainer()
-    print(trainer.start(train_arr, test_arr))
