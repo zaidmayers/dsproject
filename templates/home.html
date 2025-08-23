@@ -1,0 +1,195 @@
+<html>
+  <body>
+    <div class="login">
+      <h1>Telecom Customer Churn Prediction</h1>
+
+      <form action="{{ url_for('prediction') }}" method="post">
+        <h2><legend>Enter Customer Details</legend></h2>
+
+        <!-- Demographics -->
+        <div class="mb-3">
+          <label class="form-label">Gender</label>
+          <select class="form-control" name="gender" required>
+            <option selected disabled value="">Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Senior Citizen</label>
+          <select class="form-control" name="SeniorCitizen" required>
+            <option selected disabled value="">Select</option>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Partner</label>
+          <select class="form-control" name="Partner" required>
+            <option selected disabled value="">Select</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Dependents</label>
+          <select class="form-control" name="Dependents" required>
+            <option selected disabled value="">Select</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+
+        <!-- Account info -->
+        <div class="mb-3">
+          <label class="form-label">Tenure (in months)</label>
+          <input class="form-control" type="number" name="tenure" min="0" max="100" placeholder="e.g. 24" required />
+        </div>
+
+        <!-- Services -->
+        <div class="mb-3">
+          <label class="form-label">Phone Service</label>
+          <select class="form-control" name="PhoneService" required>
+            <option selected disabled value="">Select</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Multiple Lines</label>
+          <select class="form-control" name="MultipleLines" required>
+            <option selected disabled value="">Select</option>
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+            <option value="No phone service">No phone service</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Internet Service</label>
+          <select class="form-control" name="InternetService" required>
+            <option selected disabled value="">Select</option>
+            <option value="DSL">DSL</option>
+            <option value="Fiber optic">Fiber optic</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Online Security</label>
+          <select class="form-control" name="OnlineSecurity" required>
+            <option selected disabled value="">Select</option>
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+            <option value="No internet service">No internet service</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Online Backup</label>
+          <select class="form-control" name="OnlineBackup" required>
+            <option selected disabled value="">Select</option>
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+            <option value="No internet service">No internet service</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Device Protection</label>
+          <select class="form-control" name="DeviceProtection" required>
+            <option selected disabled value="">Select</option>
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+            <option value="No internet service">No internet service</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Tech Support</label>
+          <select class="form-control" name="TechSupport" required>
+            <option selected disabled value="">Select</option>
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+            <option value="No internet service">No internet service</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Streaming TV</label>
+          <select class="form-control" name="StreamingTV" required>
+            <option selected disabled value="">Select</option>
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+            <option value="No internet service">No internet service</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Streaming Movies</label>
+          <select class="form-control" name="StreamingMovies" required>
+            <option selected disabled value="">Select</option>
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+            <option value="No internet service">No internet service</option>
+          </select>
+        </div>
+
+        <!-- Contract / Billing -->
+        <div class="mb-3">
+          <label class="form-label">Contract</label>
+          <select class="form-control" name="Contract" required>
+            <option selected disabled value="">Select</option>
+            <option value="Month-to-month">Month-to-month</option>
+            <option value="One year">One year</option>
+            <option value="Two year">Two year</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Paperless Billing</label>
+          <select class="form-control" name="PaperlessBilling" required>
+            <option selected disabled value="">Select</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Payment Method</label>
+          <select class="form-control" name="PaymentMethod" required>
+            <option selected disabled value="">Select</option>
+            <option value="Electronic check">Electronic check</option>
+            <option value="Mailed check">Mailed check</option>
+            <option value="Bank transfer (automatic)">Bank transfer (automatic)</option>
+            <option value="Credit card (automatic)">Credit card (automatic)</option>
+          </select>
+        </div>
+
+        <!-- Charges -->
+        <div class="mb-3">
+          <label class="form-label">Monthly Charges</label>
+          <input class="form-control" type="number" name="MonthlyCharges" min="0" step="0.01" placeholder="e.g. 70.5" required />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Total Charges</label>
+          <input class="form-control" type="number" name="TotalCharges" min="0" step="0.01" placeholder="e.g. 1500.75" required />
+        </div>
+
+        <!-- Submit -->
+        <div class="mb-3">
+          <input class="btn btn-primary" type="submit" value="Predict Churn" />
+        </div>
+      </form>
+
+      <h2>
+        Prediction: {{ result }}
+      </h2>
+    </div>
+  </body>
+</html>
