@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template
-from src import PredictPipeline, AcquireData, TrainingPipeline
+from src.pipeline.predict_pipeline import PredictPipeline, AcquireData
 
 app = Flask(__name__)
 

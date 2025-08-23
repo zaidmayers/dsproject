@@ -1,6 +1,6 @@
 import os
-from src import CustomException
-from src import logging
+from src.exception import CustomException
+from src.logger import logging
 import joblib
 from sklearn.model_selection import GridSearchCV
 from sklearn.metrics import f1_score
