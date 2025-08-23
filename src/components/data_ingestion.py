@@ -1,10 +1,9 @@
 import os
-from src.exception import CustomException
-from src.logger import logging
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
-from src.components.data_transformation import DataTrans
+from src.exception import CustomException
+from src.logger import logging
 
 @dataclass
 class DataIngestionConfig:  
@@ -46,9 +45,3 @@ class DataIngestion:
             logging.exception('Data ingestion failed!')
             raise CustomException("Data ingestion failed!") from e
     
-if __name__ == "__main__":
-    x = DataIngestion()
-    train, test = x.start()
-    
-    y = DataTrans()
-    y.start(train, test)
