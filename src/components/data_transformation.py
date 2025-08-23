@@ -1,5 +1,4 @@
 import os
-import sys
 from dataclasses import dataclass
 import numpy as np
 import pandas as pd
@@ -7,11 +6,9 @@ from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
-
-
-from src.exception import CustomException
-from src.logger import logging
 from src.utils import save_object
+from src.logger import logging
+from src.exception import CustomException
 
 @dataclass
 class DataTransConfig: 
@@ -103,6 +100,6 @@ class DataTrans:
             
             save_object(preprocessor, self.config.preprocessor)
             
-            return (train_arr, test_arr, self.config)
+            return (train_arr, test_arr)
         except Exception as e: 
             raise CustomException(e)
