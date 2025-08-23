@@ -1,6 +1,6 @@
 import os
-from src.exception import CustomException
-from src.logger import logging
+from src import CustomException
+from src import logging
 import joblib
 from sklearn.model_selection import GridSearchCV
 from sklearn.metrics import f1_score
@@ -19,6 +19,8 @@ def save_object(obj, filename):
 def evaluate(X_train, y_train,X_test,y_test,models,params):
     try:
         performance_records = {}
+        fitted_models = {}
+        
         logging.info('Selecting model and training with best parameters.')
         for name, model in models.items():
             param = params.get(name, {})
@@ -32,8 +34,18 @@ def evaluate(X_train, y_train,X_test,y_test,models,params):
             test_model_score = f1_score (y_test, y_pred_test)
             
             performance_records[name] = test_model_score
+            fitted_models[name] = best_model
         logging.info('Test records from models trained are saved.')
-        return performance_records
+        return performance_records, fitted_models
     
+    except Exception as e:
+        raise CustomException(e)
+    
+    
+def load_object(path):
+    try:
+        with open(path, "rb") as obj:
+            return joblib.load(obj)
+
     except Exception as e:
         raise CustomException(e)
