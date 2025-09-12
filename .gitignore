@@ -12,9 +12,6 @@ notebook/catboost_info/
 *.tsv
 *.out.tfevents
 
-# Artifacts (models, checkpoints, outputs)
-artifacts/
-
 # Python cache
 __pycache__/
 
