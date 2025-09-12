@@ -1,13 +1,13 @@
 from flask import Flask, request, render_template
 from src.pipeline.predict_pipeline import PredictPipeline, AcquireData
 import os
-app = Flask(__name__)
+application = Flask(__name__)
 
-@app.route('/')
+@application.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/prediction', methods=['GET', 'POST'])
+@application.route('/prediction', methods=['GET', 'POST'])
 def prediction():
     if request.method == 'GET':
         return render_template('home.html')
@@ -45,5 +45,5 @@ def prediction():
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 8080))
-    app.run(host="0.0.0.0", port=port)
+    application.run(host="0.0.0.0", port=port)
     
